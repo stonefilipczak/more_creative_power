@@ -4,7 +4,7 @@ class ArtWorksController < ApplicationController
   # GET /art_works
   # GET /art_works.json
   def index
-    @art_works = ArtWork.all
+    @art_works = ArtWork.where(:user => current_user)
   end
 
   # GET /art_works/1
@@ -25,6 +25,7 @@ class ArtWorksController < ApplicationController
   # POST /art_works.json
   def create
     @art_work = ArtWork.new(art_work_params)
+    @art_work.user = current_user
 
     respond_to do |format|
       if @art_work.save
