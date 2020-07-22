@@ -1,29 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Art Works</h1>
+<h1>Your Art Works</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @art_works.each do |art_work| %>
-      <tr>
-        <td><%= art_work.title %></td>
-        <td><%= art_work.description %></td>
-        <td><%= link_to 'Show', art_work %></td>
-        <td><%= link_to 'Edit', edit_art_work_path(art_work) %></td>
-        <td><%= link_to 'Destroy', art_work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @art_works.each do |art_work| %>
+<%= link_to art_work do %>
+
+<h3><%= art_work.title %></h1>
+
+    <% if art_work.image.attached? %>
+    <% art_work.image.each do |img| %>
+    <%= image_tag(img, size: "200") %>
     <% end %>
-  </tbody>
-</table>
+    <% else %>
+    <p>images not yet uploaded</p>
+    <% end %>
 
-<br>
+    <%end%>
 
-<%= link_to 'New Art Work', new_art_work_path %>
+    <% end %>
+
+    <br>
+
+    <%= link_to 'New Art Work', new_art_work_path %>

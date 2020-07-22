@@ -1,14 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @art_work.title %>
+    <strong>Title:</strong>
+    <%= @art_work.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @art_work.description %>
+    <strong>Description:</strong>
+    <%= @art_work.description %>
 </p>
 
+
+<% if @art_work.image.attached? %>
+<% @art_work.image.each do |img| %>
+<%= image_tag(img, size: "300") %>
+<% end %>
+<% else %>
+<p>images not yet uploaded</p>
+<% end %>
+
+
+<br />
+
+
+
 <%= link_to 'Edit', edit_art_work_path(@art_work) %> |
+<%= link_to 'Destroy', @art_work, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<br />
+
 <%= link_to 'Back', art_works_path %>

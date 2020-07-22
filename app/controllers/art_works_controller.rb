@@ -26,6 +26,7 @@ class ArtWorksController < ApplicationController
   def create
     @art_work = ArtWork.new(art_work_params)
     @art_work.user = current_user
+    
 
     respond_to do |format|
       if @art_work.save
@@ -70,6 +71,6 @@ class ArtWorksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def art_work_params
-      params.require(:art_work).permit(:title, :description)
+      params.require(:art_work).permit(:title, :description, image: [])
     end
 end
