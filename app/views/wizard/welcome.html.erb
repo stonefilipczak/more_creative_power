@@ -1,0 +1,8 @@
+<% if current_user.present? %>
+<h1>Hello Artist!</h1>
+<%= link_to  "Create your first artwork", new_art_work_path %>
+<% else %>
+<h1>Welcome!</h1>
+<%= link_to "Create your account", new_user_registration_path, :class => 'navbar-link'  %> or
+<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> to continue.
+<% end %>
