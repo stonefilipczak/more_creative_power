@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Photo Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Schedule</th>
+      <th>Contact</th>
+      <th>Status</th>
+      <th>Reply</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photo_requests.each do |photo_request| %>
+      <tr>
+        <td><%= photo_request.user_id %></td>
+        <td><%= photo_request.schedule %></td>
+        <td><%= photo_request.contact %></td>
+        <td><%= photo_request.status %></td>
+        <td><%= photo_request.reply %></td>
+        <td><%= link_to 'Show', photo_request %></td>
+        <td><%= link_to 'Edit', edit_photo_request_path(photo_request) %></td>
+        <td><%= link_to 'Destroy', photo_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Photo Request', new_photo_request_path %>

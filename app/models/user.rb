@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :art_works             
+  has_many :art_works
+  has_one :photo_requests             
 end

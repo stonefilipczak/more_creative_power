@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+
+
+<% if @photo_request.present? %>
+<span>you have a pending photo request</span><%= link_to 'Edit', edit_photo_request_path(@photo_request.ids) %>
+<% else %>
+<%= link_to 'Request Photographer', new_photo_request_path %>
+<% end %>
+
 <h1>Your Art Works</h1>
 
 
