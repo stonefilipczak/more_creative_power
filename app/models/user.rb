@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
 
   has_many :art_works
-  has_one :photo_requests             
+  has_one :photo_request             
 end
