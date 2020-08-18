@@ -11,6 +11,7 @@ class PhotoRequestsController < InheritedResources::Base
     @photo_request.user = current_user
     
 
+
     respond_to do |format|
       if @photo_request.save
         format.html { redirect_to art_works_url notice: 'Photo request was succesfully created' }
@@ -23,9 +24,15 @@ class PhotoRequestsController < InheritedResources::Base
   end
 
   def update
+
+    if current_user.is_photographer?
+      @photo_request.claimed_by = current_user.id
+      @photo_request.claimed_at = DateTime.now
+    end  
+    
     respond_to do |format|
       if @photo_request.update(photo_request_params)
-        format.html { redirect_to art_works_url notice: 'Photo request was succesfully updated' }
+        format.html { redirect_to root_path notice: 'Photo request was succesfully updated' }
        
       else
         format.html { render :edit }
@@ -34,6 +41,7 @@ class PhotoRequestsController < InheritedResources::Base
     end
   end
 
+
   private
 
     def set_photo_request
@@ -41,7 +49,7 @@ class PhotoRequestsController < InheritedResources::Base
     end
 
     def photo_request_params
-      params.require(:photo_request).permit(:schedule, :contact, :status, :reply)
+      params.require(:photo_request).permit(:schedule, :contact, :status, :reply, :claimed_at, :claimed_by)
     end
 
 end

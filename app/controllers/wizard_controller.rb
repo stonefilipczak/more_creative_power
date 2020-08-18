@@ -13,6 +13,7 @@ class WizardController < ApplicationController
     def photographer
         @art_works = ArtWork.all()
         @photo_requests = PhotoRequest.all()
+        @claimed = PhotoRequest.where(:claimed_by => current_user)
         render :photographer
     end
 end    

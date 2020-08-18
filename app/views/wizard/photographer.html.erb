@@ -1,8 +1,18 @@
 <h1>Hello Photographer!</h1>
 
 <h2>Photo Requests:</h2>
+
+<% @claimed.each do |photo_request| %>
+<h2>YOU CLAIMED THIS ONE</h2>
+<%= link_to 'edit', edit_photo_request_path(photo_request) %>
+
+<% end %>
+
 <% @photo_requests.each do |photo_request| %>
 <p><%= photo_request.contact %></p>
+<p><%= photo_request.schedule %></p>
+<%= link_to 'claim', edit_photo_request_path(photo_request) %>
+
 <% end %>
 
 <h2>Art Works:</h2>
