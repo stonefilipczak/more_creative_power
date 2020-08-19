@@ -5,7 +5,7 @@ class ArtWorksController < ApplicationController
   # GET /art_works.json
   def index
     @art_works = ArtWork.where(:user => current_user)
-    @photo_request = PhotoRequest.where(:user => current_user)
+    @photo_request = current_user.photo_request
   end
 
   # GET /art_works/1

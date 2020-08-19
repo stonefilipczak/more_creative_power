@@ -3,7 +3,13 @@
 
 
 <% if @photo_request.present? %>
-<span>you have a pending photo request</span><%= link_to 'Edit', edit_photo_request_path(@photo_request.ids) %>
+<% if @photo_request.claimed_at? %>
+<span>your photo request was claimed at <%= @photo_request.claimed_at %></span>
+<div>reply from photographer: <%= @photo_request.reply %></div>
+<% else %>
+
+<span>you made a photo request at <%= @photo_request.created_at %></span><%= link_to 'Edit', edit_photo_request_path(@photo_request.id) %>
+<%end%>
 <% else %>
 <%= link_to 'Request Photographer', new_photo_request_path %>
 <% end %>
