@@ -19,3 +19,19 @@
 body {
   background-color: rgb(133, 231, 177);
 }
+
+.art_container {
+  display: block;
+  justify-content: center;
+}
+
+.art_work {
+  margin: 5px;
+  background-color: white;
+  border: 10px solid mediumslateblue;
+}
+
+.photo_request {
+  background-color: white;
+  border: 10px solid orange;
+}

@@ -1,39 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 
+<div class="photo_request">
+    <% if @photo_request.present? %>
+    <% if @photo_request.claimed_at? %>
+    <span>your photo request was claimed at <%= @photo_request.claimed_at %></span>
+    <div>reply from photographer: <%= @photo_request.reply %></div>
+    <% else %>
 
-<% if @photo_request.present? %>
-<% if @photo_request.claimed_at? %>
-<span>your photo request was claimed at <%= @photo_request.claimed_at %></span>
-<div>reply from photographer: <%= @photo_request.reply %></div>
-<% else %>
-
-<span>you made a photo request at <%= @photo_request.created_at %></span><%= link_to 'Edit', edit_photo_request_path(@photo_request.id) %>
-<%end%>
-<% else %>
-<%= link_to 'Request Photographer', new_photo_request_path %>
-<% end %>
+    <span>you made a photo request at <%= @photo_request.created_at %></span><%= link_to 'Edit', edit_photo_request_path(@photo_request.id) %>
+    <%end%>
+    <% else %>
+    <%= link_to 'Request Photographer', new_photo_request_path %>
+    <% end %>
+</div>
 
 <h1>Your Art Works</h1>
 
+<div class="art_container">
+    <% @art_works.each do |art_work| %>
+    <div class="art_work">
+        <%= link_to art_work do %>
 
-<% @art_works.each do |art_work| %>
-<%= link_to art_work do %>
+        <h3><%= art_work.title %></h1>
 
-<h3><%= art_work.title %></h1>
+            <% if art_work.image.attached? %>
+            <% art_work.image.each do |img| %>
+            <%= image_tag(img, size: "200") %>
+            <% end %>
+            <% else %>
+            <p>images not yet uploaded</p>
+            <% end %>
 
-    <% if art_work.image.attached? %>
-    <% art_work.image.each do |img| %>
-    <%= image_tag(img, size: "200") %>
+            <%end%>
+    </div>
     <% end %>
-    <% else %>
-    <p>images not yet uploaded</p>
-    <% end %>
 
-    <%end%>
-
-    <% end %>
 
     <br>
 
     <%= link_to 'New Art Work', new_art_work_path %>
+</div>
