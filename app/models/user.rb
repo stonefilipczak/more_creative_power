@@ -6,5 +6,9 @@ class User < ApplicationRecord
 
 
   has_many :art_works
-  has_one :photo_request             
+  has_one :photo_request
+  
+  def name
+    email 
+  end             
 end

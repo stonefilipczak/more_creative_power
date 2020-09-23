@@ -2,34 +2,32 @@
 
 <h2>Photo Requests:</h2>
 
-<% @claimed.each do |photo_request| %>
-<h2>YOU CLAIMED THIS ONE</h2>
-<%= link_to 'edit', edit_photo_request_path(photo_request) %>
 
-<% end %>
-
-<% @photo_requests.each do |photo_request| %>
-<p><%= photo_request.contact %></p>
-<p><%= photo_request.schedule %></p>
-<%= link_to 'claim', edit_photo_request_path(photo_request) %>
-
+<%- @photo_requests.each do |photo_request| %>
+  <p><%= photo_request.contact %></p>
+  <p><%= photo_request.schedule %></p>
+  <% if photo_request.claimed_by = current_user %>
+    <h2>YOU CLAIMED THIS ONE</h2>
+    <%= link_to 'edit', edit_photo_request_path(photo_request) %>
+  <% else %>
+    <%= link_to 'claim', edit_photo_request_path(photo_request) %>
+  <% end %>
 <% end %>
 
 <h2>Art Works:</h2>
 
-<% @art_works.each do |art_work| %>
-<%= link_to art_work do %>
+<%- @art_works.each do |art_work| %>
+  <%= link_to art_work do %>
 
-<h3><%= art_work.title %></h1>
+    <h3><%= art_work.title %></h1>
 
-    <% if art_work.image.attached? %>
-    <% art_work.image.each do |img| %>
-    <%= image_tag(img, size: "200") %>
-    <% end %>
+    <%- if art_work.image.attached? %>
+      <% art_work.image.each do |img| %>
+       <%= image_tag(img, size: "200") %>
+      <% end %>
     <% else %>
-    <p>images not yet uploaded</p>
+      <p>images not yet uploaded</p>
     <% end %>
 
-    <%end%>
-
-    <% end %>
+  <%end%>
+<% end %>
