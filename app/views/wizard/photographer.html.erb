@@ -2,32 +2,47 @@
 
 <h2>Photo Requests:</h2>
 
-
-<%- @photo_requests.each do |photo_request| %>
-  <p><%= photo_request.contact %></p>
-  <p><%= photo_request.schedule %></p>
-  <% if photo_request.claimed_by = current_user %>
-    <h2>YOU CLAIMED THIS ONE</h2>
-    <%= link_to 'edit', edit_photo_request_path(photo_request) %>
-  <% else %>
-    <%= link_to 'claim', edit_photo_request_path(photo_request) %>
+<div class="request_grid">
+  <%- @photo_requests.each do |photo_request| %>
+    <div class="request">
+      <p><%= photo_request.contact %></p>
+      <p><%= photo_request.schedule %></p>
+      <% if photo_request.claimed_by = current_user %>
+        you claimed this photo request at <%= photo_request.claimed_at %>
+        <p>your reply: 
+          <%= photo_request.reply %>
+          <%= link_to 'edit', edit_photo_request_path(photo_request) %>
+        </p>
+      <% else %>
+        <%= link_to 'claim', edit_photo_request_path(photo_request) %>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
 
 <h2>Art Works:</h2>
 
-<%- @art_works.each do |art_work| %>
-  <%= link_to art_work do %>
+<div class="art_container">
+    <% @art_works.each do |art_work| %>
+    <div class="art_work">
+        <%= link_to art_work do %>
 
-    <h3><%= art_work.title %></h1>
+        <h3><%= art_work.title %></h1>
 
-    <%- if art_work.image.attached? %>
-      <% art_work.image.each do |img| %>
-       <%= image_tag(img, size: "200") %>
-      <% end %>
-    <% else %>
-      <p>images not yet uploaded</p>
+            <% if art_work.image.attached? %>
+            <% art_work.image.each do |img| %>
+            <%= image_tag(img, :class => "art_img") %>
+            <% end %>
+            <% else %>
+            <p>images not yet uploaded</p>
+            <% end %>
+
+            <%end%>
+    </div>
     <% end %>
 
-  <%end%>
-<% end %>
+
+    <br>
+
+    <%= link_to 'New Art Work', new_art_work_path %>
+</div>

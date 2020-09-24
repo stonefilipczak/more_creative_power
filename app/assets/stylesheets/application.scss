@@ -17,21 +17,59 @@
 @import "bootstrap";
 
 body {
-  background-color: rgb(133, 231, 177);
 }
 
 .art_container {
-  display: block;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  align-items: start;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-auto-flow: row dense;
 }
 
 .art_work {
   margin: 5px;
-  background-color: white;
-  border: 10px solid mediumslateblue;
+  background-color: rgb(22, 22, 22);
+
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+}
+
+.art_work a,
+h3 {
+  color: white;
+}
+
+.art_work:hover {
+  cursor: pointer;
+}
+
+.art_img {
+  max-width: 100%;
 }
 
 .photo_request {
-  background-color: white;
-  border: 10px solid orange;
+  text-align: start;
+  text-align: right;
+}
+
+.request {
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.request_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  align-items: start;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-auto-flow: row dense;
+}
+
+h2 {
+  margin-top: 30px;
 }
