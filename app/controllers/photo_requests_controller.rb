@@ -26,6 +26,7 @@ class PhotoRequestsController < InheritedResources::Base
     if current_user.is_photographer?
       @photo_request.claimed_by = current_user
       @photo_request.claimed_at = DateTime.now
+      RequestMailer.with(user: @photo_request.user, claimed_by: @photo_request.claimed_by, reply: @photo_request.reply).request_claimed.deliver_later
     end
 
     respond_to do |format|

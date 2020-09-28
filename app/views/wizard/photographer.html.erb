@@ -7,7 +7,7 @@
     <div class="request">
       <p><%= photo_request.contact %></p>
       <p><%= photo_request.schedule %></p>
-      <% if photo_request.claimed_by = current_user %>
+      <% if photo_request.claimed_by == current_user %>
         you claimed this photo request at <%= photo_request.claimed_at %>
         <p>your reply: 
           <%= photo_request.reply %>
