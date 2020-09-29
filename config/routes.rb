@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :photo_requests
+  devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
-  resources :art_works
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   root to: "wizard#welcome"
+
+  resources :photo_requests
+  resources :art_works
+
+  # review emails in development
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
