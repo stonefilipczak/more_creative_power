@@ -5,10 +5,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Your photo request has been claimed by <%= @claimed_by %></h1>
-    <p>
-      Their response: <%= @reply %>
-    </p>
+    <h1>Your photo request has been claimed by <%= @claimed_by.email %></h1>
+    <h2> Their response: <%= @reply %> </h2>
     
   </body>
 </html>

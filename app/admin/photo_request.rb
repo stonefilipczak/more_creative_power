@@ -1,5 +1,8 @@
 ActiveAdmin.register PhotoRequest do
-  permit_params :schedule, :contact, :reply
+  
+  permit_params :schedule, :contact, :reply, :user, :claimed_by
+  
+  
 
   index do
     selectable_column

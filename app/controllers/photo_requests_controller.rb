@@ -9,6 +9,7 @@ class PhotoRequestsController < InheritedResources::Base
   def create
     @photo_request = PhotoRequest.new(photo_request_params)
     @photo_request.user = current_user
+    RequestMailer.with(user: @photo_request.user, contact: @photo_request.contact, schedule: @photo_request.schedule).request_made.deliver_later
 
 
     respond_to do |format|
